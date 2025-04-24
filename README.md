@@ -86,21 +86,18 @@ my_postgres_datasource:
     class_name: SqlAlchemyExecutionEngine
     credentials:
       drivername: postgresql+psycopg2
-      host: eden206.kube.baac.or.th
-      port: "5433"
-      username: postgres
-      password: admin1234
-      database: Banking_System
+      host: localhost
+      port: "{}"
+      username: {}
+      password: {}
+      database: {}
   data_connectors:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetSqlDataConnector
       assets:
-        accounts:
-          table_name: accounts
-          schema_name: public
-        customer:
-          table_name: customer
-          schema_name: public
+        {}:
+          table_name: {}
+          schema_name: {}
 ```
 
 ### 2. **MongoDB** 🍃
@@ -116,12 +113,11 @@ my_mongodb_datasource:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetMongoDataConnector
       mongodb_connection_string: mongodb://mongo_user:mongo_pass@eden206.kube.baac.or.th:27017
-      database: Banking_System
+      database: {}
       assets:
-        transactions:
-          collection_name: transactions
-        logs:
-          collection_name: logs
+        {}:
+          collection_name: {}
+        
 ```
 
 ### 3. **Vertica** 📈
@@ -135,21 +131,18 @@ my_vertica_datasource:
     class_name: SqlAlchemyExecutionEngine
     credentials:
       drivername: vertica+vertica_python
-      host: eden206.kube.baac.or.th
-      port: "5433"
-      username: vertica_user
-      password: vertica_pass
-      database: Banking_DWH
+      host: {}
+      port: "{}"
+      username: {vertica_user}
+      password: {vertica_pass}
+      database: {}
   data_connectors:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetSqlDataConnector
       assets:
-        accounts_warehouse:
-          table_name: accounts_warehouse
-          schema_name: dwh
-        customer_warehouse:
-          table_name: customer_warehouse
-          schema_name: dwh
+        {}:
+          table_name: {}
+          schema_name: {}
 ```
 
 ### 4. **Kafka** 📡
@@ -164,12 +157,11 @@ my_kafka_datasource:
   data_connectors:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetKafkaDataConnector
-      bootstrap_servers: eden206.kube.baac.or.th:9092
+      bootstrap_servers: http://localhost:8080
       topics:
-        account_events:
+        account_events: #ตัวอย่าง
           schema: '{"account_id": "string", "event_type": "string", "timestamp": "string"}'
-        transaction_events:
-          schema: '{"transaction_id": "string", "amount": "float", "timestamp": "string"}'
+      
 ```
 
 ### 5. **Iceberg** ❄️
@@ -187,15 +179,13 @@ my_iceberg_datasource:
       base_directory: s3a://banking-bucket/iceberg/
       assets:
         accounts_iceberg:
-          table_name: accounts_iceberg
-          catalog: banking_catalog
-          namespace: banking
+          table_name: {}
+          catalog: {}
+          namespace: {}
           provider: aws
-        transactions_iceberg:
+        transactions_iceberg: #ตัวอย่าง
           table_name: transactions_iceberg
           catalog: banking_catalog
-          namespace: banking
-          provider: aws
 ```
 
 ### 6. **Dremio** 🌊
@@ -209,7 +199,7 @@ my_dremio_datasource:
     class_name: SqlAlchemyExecutionEngine
     credentials:
       drivername: arrow-flight
-      host: eden206.kube.baac.or.th
+      host: {}
       port: "32010"
       username: dremio_user
       password: dremio_pass
@@ -218,11 +208,8 @@ my_dremio_datasource:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetSqlDataConnector
       assets:
-        accounts_lake:
+        accounts_lake: #ตัวอย่าง
           table_name: accounts_lake
-          schema_name: lake
-        transactions_lake:
-          table_name: transactions_lake
           schema_name: lake
 ```
 
@@ -304,7 +291,7 @@ checkpoints:
         action:
           module_name: datahub_gx_plugin.action
           class_name: DataHubValidationAction
-          server_url: http://eden206.kube.baac.or.th:8080
+          server_url: http://localhost:8080
 ```
 
 ---
