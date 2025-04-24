@@ -95,9 +95,9 @@ my_postgres_datasource:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetSqlDataConnector
       assets:
-        {}:
-          table_name: {}
-          schema_name: {}
+        accounts: # ตัวอย่าง
+          table_name: accounts
+          schema_name: public
 ```
 
 ### 2. **MongoDB** 🍃
@@ -115,8 +115,8 @@ my_mongodb_datasource:
       mongodb_connection_string: mongodb://mongo_user:mongo_pass@eden206.kube.baac.or.th:27017
       database: {}
       assets:
-        {}:
-          collection_name: {}
+        transactions: #ตัวอย่าง
+          collection_name: transactions
         
 ```
 
@@ -140,9 +140,9 @@ my_vertica_datasource:
     default_configured_data_connector_name:
       class_name: ConfiguredAssetSqlDataConnector
       assets:
-        {}:
-          table_name: {}
-          schema_name: {}
+        accounts_warehouse: #ตัวอย่าง
+          table_name: accounts_warehouse
+          schema_name: dwh
 ```
 
 ### 4. **Kafka** 📡
